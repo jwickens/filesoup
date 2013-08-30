@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API Reference &mdash; Kazoup Demo 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Kazoup Demo 1 documentation" href="index.html" />
+    <link rel="next" title="Requirements" href="requirements.html" />
+    <link rel="prev" title="Welcome to Filesoup’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="requirements.html" title="Requirements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Filesoup’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Kazoup Demo 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="contents local topic" id="contents">
+<span id="api"></span><ul class="simple">
+<li><a class="reference internal" href="#api-reference" id="id1">API Reference</a><ul>
+<li><a class="reference internal" href="#http-api" id="id2">HTTP API</a></li>
+<li><a class="reference internal" href="#source-code-reference" id="id3">Source Code Reference</a><ul>
+<li><a class="reference internal" href="#file-monitor" id="id4">file_monitor</a></li>
+<li><a class="reference internal" href="#tasks" id="id5">tasks</a></li>
+<li><a class="reference internal" href="#models" id="id6">models</a></li>
+<li><a class="reference internal" href="#resources" id="id7">resources</a></li>
+<li><a class="reference internal" href="#views" id="id8">views</a></li>
+<li><a class="reference internal" href="#setup-config" id="id9">setup.config</a></li>
+<li><a class="reference internal" href="#setup-create-flask" id="id10">setup.create_flask</a></li>
+<li><a class="reference internal" href="#setup-database" id="id11">setup.database</a></li>
+<li><a class="reference internal" href="#utils-tests" id="id12">utils.tests</a></li>
+<li><a class="reference internal" href="#utils" id="id13">utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="api-reference">
+<h1><a class="toc-backref" href="#id1">API Reference</a><a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="http-api">
+<h2><a class="toc-backref" href="#id2">HTTP API</a><a class="headerlink" href="#http-api" title="Permalink to this headline">¶</a></h2>
+<p>These are the web hooks:</p>
+<dl class="get">
+<dt id="get--files-">
+<tt class="descname">GET </tt><tt class="descname">/files/</tt><a class="headerlink" href="#get--files-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all the files in JSON format.</p>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--files--str-file_id--">
+<tt class="descname">GET </tt><tt class="descname">/files/&lt;str:file_id&gt;/</tt><a class="headerlink" href="#get--files--str-file_id--" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides the date created, date modified, and size of the file whose name is equal to <cite>file_id</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="source-code-reference">
+<h2><a class="toc-backref" href="#id3">Source Code Reference</a><a class="headerlink" href="#source-code-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-monitor">
+<h3><a class="toc-backref" href="#id4">file_monitor</a><a class="headerlink" href="#file-monitor" title="Permalink to this headline">¶</a></h3>
+<p>Implementation of watchdog, which allows cross-platform monitoring of files.</p>
+<span class="target" id="module-app.file_monitor"></span><dl class="class">
+<dt id="app.file_monitor.UpdateDatabaseHandler">
+<em class="property">class </em><tt class="descclassname">app.file_monitor.</tt><tt class="descname">UpdateDatabaseHandler</tt><big>(</big><em>testing=False</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#UpdateDatabaseHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.UpdateDatabaseHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts celery tasks to update the database on file events.</p>
+<dl class="method">
+<dt id="app.file_monitor.UpdateDatabaseHandler.on_created">
+<tt class="descname">on_created</tt><big>(</big><em>event</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#UpdateDatabaseHandler.on_created"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.UpdateDatabaseHandler.on_created" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when a new file is created, which now must be recorded to the Database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.file_monitor.UpdateDatabaseHandler.on_deleted">
+<tt class="descname">on_deleted</tt><big>(</big><em>event</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#UpdateDatabaseHandler.on_deleted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.UpdateDatabaseHandler.on_deleted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when a file is deleted, which now must be deleted from the Database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.file_monitor.UpdateDatabaseHandler.on_modified">
+<tt class="descname">on_modified</tt><big>(</big><em>event</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#UpdateDatabaseHandler.on_modified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.UpdateDatabaseHandler.on_modified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when a file is modified, which now must be modified in the Database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.file_monitor.UpdateDatabaseHandler.on_moved">
+<tt class="descname">on_moved</tt><big>(</big><em>event</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#UpdateDatabaseHandler.on_moved"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.UpdateDatabaseHandler.on_moved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggered when a file is moved, which now must be deleted from the Database</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="app.file_monitor.schedule_observer">
+<tt class="descclassname">app.file_monitor.</tt><tt class="descname">schedule_observer</tt><big>(</big><em>path='/Users/jwickens/Envs/kazoup-demo/app/example_files'</em>, <em>testing=False</em><big>)</big><a class="reference internal" href="_modules/app/file_monitor.html#schedule_observer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.file_monitor.schedule_observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an file directory observer and schedules it to use the UpdateDabaseHandler that in turn calls the Celery tasks.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tasks">
+<h3><a class="toc-backref" href="#id5">tasks</a><a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<p>Methods to update the database in response to changes to the directory.</p>
+<span class="target" id="module-app.tasks"></span><p>Defines the tasks that update the database with new files. Some tasks are meant to be run locally and are not celery tasks.</p>
+<dl class="class">
+<dt id="app.tasks.DatabaseTask">
+<em class="property">class </em><tt class="descclassname">app.tasks.</tt><tt class="descname">DatabaseTask</tt><a class="reference internal" href="_modules/app/tasks.html#DatabaseTask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.DatabaseTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that tasks connect and disconnect to the database.</p>
+<dl class="method">
+<dt id="app.tasks.DatabaseTask.file_name">
+<tt class="descname">file_name</tt><big>(</big><em>location</em><big>)</big><a class="reference internal" href="_modules/app/tasks.html#DatabaseTask.file_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.DatabaseTask.file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts the file name out of the location</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.tasks.DatabaseTask.mapping">
+<tt class="descname">mapping</tt><big>(</big><em>location</em>, <em>stat</em><big>)</big><a class="reference internal" href="_modules/app/tasks.html#DatabaseTask.mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.DatabaseTask.mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a dictionary to easily extract information from location and stat that is relevent to the Archive model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="app.tasks.discover_files">
+<tt class="descclassname">app.tasks.</tt><tt class="descname">discover_files</tt><big>(</big><em>location='/Users/jwickens/Envs/kazoup-demo/app/example_files'</em>, <em>testing=False</em>, <em>immediate=False</em><big>)</big><a class="reference internal" href="_modules/app/tasks.html#discover_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.discover_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Walks through a given location to disover all unknown files. If immediate is not False it must provide a db_session object.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.tasks.verify_file">
+<tt class="descclassname">app.tasks.</tt><tt class="descname">verify_file</tt><big>(</big><em>file_obj</em>, <em>location='/Users/jwickens/Envs/kazoup-demo/app/example_files'</em>, <em>testing=False</em><big>)</big><a class="reference internal" href="_modules/app/tasks.html#verify_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.verify_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks to see if a given file still exists and still has the same attributes. Syncronizes any changes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.tasks.verify_files">
+<tt class="descclassname">app.tasks.</tt><tt class="descname">verify_files</tt><big>(</big><em>location='/Users/jwickens/Envs/kazoup-demo/app/example_files'</em>, <em>testing=False</em><big>)</big><a class="reference internal" href="_modules/app/tasks.html#verify_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.tasks.verify_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Goes through the files table and starts the verify_file task for each file record.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="models">
+<h3><a class="toc-backref" href="#id6">models</a><a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<p>Defines the Archive model which defines how I store file objects.</p>
+<span class="target" id="module-app.models"></span><p>Defines the SQLAlchemy models to store the apps data.</p>
+<dl class="class">
+<dt id="app.models.Archive">
+<em class="property">class </em><tt class="descclassname">app.models.</tt><tt class="descname">Archive</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/app/models.html#Archive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.models.Archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>The model representation SQLAlchemy must use to store files into the database.</p>
+<dl class="attribute">
+<dt id="app.models.Archive.serialize">
+<tt class="descname">serialize</tt><a class="reference internal" href="_modules/app/models.html#Archive.serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.models.Archive.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a python dictionary representation of the file for easy serialization to JSON</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="resources">
+<h3><a class="toc-backref" href="#id7">resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<p>Defines the HTTP resources <a class="reference internal" href="#get--files-" title="GET /files/"><tt class="xref http http-get docutils literal"><span class="pre">GET</span> <span class="pre">/files/</span></tt></a> and <a class="reference internal" href="#get--files--str-file_id--" title="GET /files/&lt;str:file_id&gt;/"><tt class="xref http http-get docutils literal"><span class="pre">GET</span> <span class="pre">/files/&lt;str:file_id&gt;/</span></tt></a>.</p>
+<span class="target" id="module-app.resources"></span><p>Defines API endpoints using the Flask-RESTful extension.</p>
+<dl class="class">
+<dt id="app.resources.FileInfo">
+<em class="property">class </em><tt class="descclassname">app.resources.</tt><tt class="descname">FileInfo</tt><a class="reference internal" href="_modules/app/resources.html#FileInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.resources.FileInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;An implementation of the flask-restful Resource that defines get to return a serialized Archive object.</p>
+<dl class="method">
+<dt id="app.resources.FileInfo.get">
+<tt class="descname">get</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/app/resources.html#FileInfo.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.resources.FileInfo.get" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>string</em>) &#8211; the name of the file to look up.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="app.resources.FileList">
+<em class="property">class </em><tt class="descclassname">app.resources.</tt><tt class="descname">FileList</tt><a class="reference internal" href="_modules/app/resources.html#FileList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.resources.FileList" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8220;An implementation of the flask-restful Resource that defines get to return a list of all Archive objects, serializing them.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h3><a class="toc-backref" href="#id8">views</a><a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h3>
+<p>This module is more of a place keeper than anything.</p>
+<span class="target" id="module-app.views"></span><dl class="function">
+<dt id="app.views.index">
+<tt class="descclassname">app.views.</tt><tt class="descname">index</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/app/views.html#index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.views.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hello, World!</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setup-config">
+<h3><a class="toc-backref" href="#id9">setup.config</a><a class="headerlink" href="#setup-config" title="Permalink to this headline">¶</a></h3>
+<p>This is made to be at once flexible yet extendable.</p>
+<span class="target" id="module-app.setup.config"></span><p>Configuration settings for all application components</p>
+<dl class="class">
+<dt id="app.setup.config.CeleryConfig">
+<em class="property">class </em><tt class="descclassname">app.setup.config.</tt><tt class="descname">CeleryConfig</tt><a class="reference internal" href="_modules/app/setup/config.html#CeleryConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.config.CeleryConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Global Celery configurations, to be subclassed for further refinements.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="app.setup.config.DatabaseConfig">
+<em class="property">class </em><tt class="descclassname">app.setup.config.</tt><tt class="descname">DatabaseConfig</tt><big>(</big><em>database_file='app.db'</em><big>)</big><a class="reference internal" href="_modules/app/setup/config.html#DatabaseConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.config.DatabaseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides standardized Database configuration object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="app.setup.config.FlaskConfig">
+<em class="property">class </em><tt class="descclassname">app.setup.config.</tt><tt class="descname">FlaskConfig</tt><a class="reference internal" href="_modules/app/setup/config.html#FlaskConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.config.FlaskConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Development flask configuration</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="app.setup.config.FlaskTestingConfig">
+<em class="property">class </em><tt class="descclassname">app.setup.config.</tt><tt class="descname">FlaskTestingConfig</tt><a class="reference internal" href="_modules/app/setup/config.html#FlaskTestingConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.config.FlaskTestingConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing flask configuration</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setup-create-flask">
+<h3><a class="toc-backref" href="#id10">setup.create_flask</a><a class="headerlink" href="#setup-create-flask" title="Permalink to this headline">¶</a></h3>
+<p>The flask factory. Allows flexibility to define a different config objects, which is important for testing.</p>
+<span class="target" id="module-app.setup.create_flask"></span><dl class="function">
+<dt id="app.setup.create_flask.create_flask">
+<tt class="descclassname">app.setup.create_flask.</tt><tt class="descname">create_flask</tt><big>(</big><em>flask_config</em>, <em>database_config</em><big>)</big><a class="reference internal" href="_modules/app/setup/create_flask.html#create_flask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.create_flask.create_flask" title="Permalink to this definition">¶</a></dt>
+<dd><p>A factory that outputs a flask app given config objects</p>
+</dd></dl>
+
+</div>
+<div class="section" id="setup-database">
+<h3><a class="toc-backref" href="#id11">setup.database</a><a class="headerlink" href="#setup-database" title="Permalink to this headline">¶</a></h3>
+<p>Defines helper functions to create database sessions and bind them to mappings.</p>
+<span class="target" id="module-app.setup.database"></span><dl class="function">
+<dt id="app.setup.database.create_base">
+<tt class="descclassname">app.setup.database.</tt><tt class="descname">create_base</tt><big>(</big><em>Base</em>, <em>engine</em><big>)</big><a class="reference internal" href="_modules/app/setup/database.html#create_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.database.create_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the tables
+:param Base: a SQLAlchemy DeclarativeBase instance.
+:param engine: an SQLAlchemy engine.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.setup.database.get_engine">
+<tt class="descclassname">app.setup.database.</tt><tt class="descname">get_engine</tt><big>(</big><em>database_uri</em><big>)</big><a class="reference internal" href="_modules/app/setup/database.html#get_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.database.get_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an SQLAlchemy engine given a database uri.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.setup.database.get_session_from_engine">
+<tt class="descclassname">app.setup.database.</tt><tt class="descname">get_session_from_engine</tt><big>(</big><em>engine</em><big>)</big><a class="reference internal" href="_modules/app/setup/database.html#get_session_from_engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.database.get_session_from_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a database session, and also calls <a class="reference internal" href="#app.setup.database.initialize_base" title="app.setup.database.initialize_base"><tt class="xref py py-class docutils literal"><span class="pre">initialize_base</span></tt></a>.
+:param engine: an SQLAlchemy engine to connect to the database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.setup.database.get_session_from_uri">
+<tt class="descclassname">app.setup.database.</tt><tt class="descname">get_session_from_uri</tt><big>(</big><em>database_uri</em><big>)</big><a class="reference internal" href="_modules/app/setup/database.html#get_session_from_uri"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.database.get_session_from_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut to :func`get_session_from_engine`</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.setup.database.initialize_base">
+<tt class="descclassname">app.setup.database.</tt><tt class="descname">initialize_base</tt><big>(</big><em>db_session</em><big>)</big><a class="reference internal" href="_modules/app/setup/database.html#initialize_base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.setup.database.initialize_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binds the models with session.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utils-tests">
+<h3><a class="toc-backref" href="#id12">utils.tests</a><a class="headerlink" href="#utils-tests" title="Permalink to this headline">¶</a></h3>
+<p>This module contains all application tests.</p>
+<span class="target" id="module-app.utils.tests"></span><p>Defines unittests for flask components of the app.</p>
+</div>
+<div class="section" id="utils">
+<h3><a class="toc-backref" href="#id13">utils</a><a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h3>
+<p>Other scripts in this module help set up the app&#8217;s environment. For instance, &#8220;create_random_files.sh&#8221; will create lots of random files in the app/example_files
+folder.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#http-api">HTTP API</a></li>
+<li><a class="reference internal" href="#source-code-reference">Source Code Reference</a><ul>
+<li><a class="reference internal" href="#file-monitor">file_monitor</a></li>
+<li><a class="reference internal" href="#tasks">tasks</a></li>
+<li><a class="reference internal" href="#models">models</a></li>
+<li><a class="reference internal" href="#resources">resources</a></li>
+<li><a class="reference internal" href="#views">views</a></li>
+<li><a class="reference internal" href="#setup-config">setup.config</a></li>
+<li><a class="reference internal" href="#setup-create-flask">setup.create_flask</a></li>
+<li><a class="reference internal" href="#setup-database">setup.database</a></li>
+<li><a class="reference internal" href="#utils-tests">utils.tests</a></li>
+<li><a class="reference internal" href="#utils">utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Filesoup&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="requirements.html"
+                        title="next chapter">Requirements</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="http-routingtable.html" title="HTTP Routing Table"
+             >routing table</a> |</li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="requirements.html" title="Requirements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Filesoup’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Kazoup Demo 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Jonathan Wickens.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

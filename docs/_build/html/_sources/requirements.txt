@@ -1,0 +1,25 @@
+.. _requirements:
+
+Requirements
+============
+
+* Flask==0.10.1
+* Flask-RESTful==0.2.5
+* Flask-SQLAlchemy==1.0
+* Jinja2==2.7.1
+* MarkupSafe==0.18
+* Pygments==1.6
+* SQLAlchemy==0.8.2
+* Sphinx==1.1.3
+* Werkzeug==0.9.3
+* amqp==1.0.13
+* anyjson==0.3.3
+* billiard==2.7.3.32
+* celery==3.0.22
+* docutils==0.11
+* itsdangerous==0.23
+* kombu==2.5.14
+* python-dateutil==2.1
+* six==1.3.0
+* sphinxcontrib-httpdomain==1.1.9
+* wsgiref==0.1.2
